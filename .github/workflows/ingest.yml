@@ -1,0 +1,50 @@
+# Daily ingestion: drop a BMC lake-report image into data/inbox/ (works from
+# the GitHub mobile app), this OCRs it via the Claude API, validates the
+# numbers, appends to data/history.json and commits. A failed validation
+# fails the run (email notification) and leaves the image in the inbox.
+
+name: Ingest lake report
+
+on:
+  push:
+    paths:
+      - 'data/inbox/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ingest
+  cancel-in-progress: false
+
+jobs:
+  ocr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Check inbox
+        id: inbox
+        run: |
+          count=$(find data/inbox -type f \( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.webp' \) 2>/dev/null | wc -l)
+          echo "count=$count" >> "$GITHUB_OUTPUT"
+
+      - name: OCR + validate + append
+        if: steps.inbox.outputs.count != '0'
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: node scripts/ocr.mjs data/inbox
+
+      - name: Commit updated history
+        if: steps.inbox.outputs.count != '0'
+        run: |
+          git config user.name 'lake-report-bot'
+          git config user.email 'actions@github.com'
+          git add data/history.json data/archive data/inbox
+          git diff --cached --quiet || git commit -m "data: lake report $(date -u +%F)"
+          git push
