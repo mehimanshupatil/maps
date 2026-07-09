@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import historyJson from '../../data/history.json'
 import type { DailyRecord, LakeReading, Totals } from '../types/data'
 import { ALL_LAKES, TOTAL_DEMAND_MLD, type LakeConfig, type LakeKey } from '../config/lakes'
+import { useSelection } from '../state/selection'
 
 const history = historyJson as unknown as DailyRecord[]
 
@@ -39,9 +40,10 @@ function clamp01(v: number) {
 }
 
 export function useWaterData(): WaterData {
+  const { dateIndex } = useSelection()
   return useMemo(() => {
     const records = allRecords()
-    const record = records[records.length - 1]
+    const record = records[dateIndex ?? records.length - 1] ?? records[records.length - 1]
     const lakes = Object.fromEntries(
       ALL_LAKES.map((config) => {
         const reading = record.lakes[config.key]
@@ -60,5 +62,5 @@ export function useWaterData(): WaterData {
       daysOfSupply: Math.round(record.totals.liveStorageML / TOTAL_DEMAND_MLD),
       history: records,
     }
-  }, [])
+  }, [dateIndex])
 }

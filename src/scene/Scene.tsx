@@ -1,4 +1,4 @@
-import { Suspense } from 'react'
+import { Suspense, useEffect } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { Terrain, Sea } from './Terrain'
 import { Lakes } from './Lakes'
@@ -10,13 +10,22 @@ import { Facilities } from './Facilities'
 import { Rain } from './Rain'
 import { CameraRig } from './CameraRig'
 import { setSelected } from '../state/selection'
+import { useHeightfield } from './heightfield'
+import { CaptureBridge } from './capture'
+
+/** mounts only once the DEM has loaded (inside Suspense) → signals the app */
+function Ready({ onReady }: { onReady: () => void }) {
+  useHeightfield()
+  useEffect(onReady, [onReady])
+  return null
+}
 
 const SKY = '#c8dfe8'
 
 // portrait phones need a farther start position to fit the whole system
 const PORTRAIT = typeof window !== 'undefined' && window.innerHeight > window.innerWidth
 
-export function Scene() {
+export function Scene({ onReady }: { onReady: () => void }) {
   return (
     <Canvas
       camera={{
@@ -26,7 +35,6 @@ export function Scene() {
         far: 1200,
       }}
       dpr={[1, 2]}
-      gl={{ preserveDrawingBuffer: true }}
       style={{ background: SKY }}
       onPointerMissed={() => setSelected(null)}
     >
@@ -45,7 +53,9 @@ export function Scene() {
         <City />
         <Facilities />
         <Rain />
+        <Ready onReady={onReady} />
       </Suspense>
+      <CaptureBridge />
       <CameraRig />
     </Canvas>
   )

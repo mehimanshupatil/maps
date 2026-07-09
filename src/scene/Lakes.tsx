@@ -17,34 +17,32 @@ const LABEL_POS: Partial<Record<LakeKey, [number, number]>> = {
   vehar: [-3, 1.4],
 }
 
-// intro: lakes fill from empty to today's level (matches the header count-up)
-const FILL_ANIM_S = 2.6
-const easeOutCubic = (p: number) => 1 - Math.pow(1 - p, 3)
-
 function Lake({ lakeKey }: { lakeKey: LakeKey }) {
   const hf = useHeightfield()
   const { lakes } = useWaterData()
   const { selected, hovered } = useSelection()
   const lake = lakes[lakeKey]
   const basin = hf.basinByKey[lakeKey]
-  const y = hf.waterY(lakeKey, lake.fill)
   const ref = useRef<THREE.Mesh>(null)
   const ringRef = useRef<THREE.Mesh>(null)
+  // displayed fill eases toward the target — covers both the load intro
+  // (0 → today) and time-scrubbing between records
+  const anim = useRef(0)
   const active = selected === lakeKey || hovered === lakeKey
   const overflowing = (lake.reading?.pctUseful ?? 0) >= 99.9
 
-  useFrame(({ clock }) => {
+  useFrame(({ clock }, delta) => {
     const t = clock.elapsedTime
-    const fillP = easeOutCubic(Math.min(1, t / FILL_ANIM_S))
+    anim.current += (lake.fill - anim.current) * Math.min(1, delta * 2.4)
     if (ref.current) {
-      const target = basin.waterMinY + (y - basin.waterMinY) * fillP
-      ref.current.position.y = target + Math.sin(t * 1.2 + basin.cx) * 0.03
+      ref.current.position.y =
+        hf.waterY(lakeKey, anim.current) + Math.sin(t * 1.2 + basin.cx) * 0.03
     }
     if (ringRef.current) {
       // overflow shimmer: slow opacity pulse at the rim
       const m = ringRef.current.material as THREE.MeshBasicMaterial
       m.opacity = 0.25 + 0.3 * (0.5 + 0.5 * Math.sin(t * 2.2 + basin.cz))
-      ringRef.current.visible = fillP > 0.95
+      ringRef.current.visible = overflowing && anim.current > lake.fill - 0.03
     }
   })
 
@@ -64,7 +62,7 @@ function Lake({ lakeKey }: { lakeKey: LakeKey }) {
 
   return (
     <group position={[basin.cx, 0, basin.cz]}>
-      <mesh ref={ref} rotation={[-Math.PI / 2, 0, 0]} position={[0, y, 0]}>
+      <mesh ref={ref} rotation={[-Math.PI / 2, 0, 0]} position={[0, basin.waterMinY, 0]}>
         <circleGeometry args={[basin.r * 0.72, 40]} />
         <meshStandardMaterial
           color={active ? WATER_ACTIVE : WATER}

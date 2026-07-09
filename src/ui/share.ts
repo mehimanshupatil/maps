@@ -1,12 +1,18 @@
 // Compose the WebGL canvas + a stat overlay into a PNG and hand it to the
-// native share sheet (or download it on desktop). Needs the r3f Canvas to be
-// created with preserveDrawingBuffer: true.
+// native share sheet (or download it on desktop). Renders one fresh frame
+// right before reading the canvas, so preserveDrawingBuffer stays off
+// (it causes background flicker on mobile GPUs).
+
+import { capture } from '../scene/capture'
 
 const SITE = 'mumbai-lakes.himanshupatil.dev'
 
 export async function shareSnapshot(pctUseful: number, daysOfSupply: number, date: string) {
   const gl = document.querySelector('canvas')
   if (!gl) return
+  if (capture.gl && capture.scene && capture.camera) {
+    capture.gl.render(capture.scene, capture.camera)
+  }
 
   const w = gl.width
   const h = gl.height
