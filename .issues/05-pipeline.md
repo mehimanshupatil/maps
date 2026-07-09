@@ -1,6 +1,6 @@
 # 05 — Pipeline: OCR Action + Pages deploy. SHIP GATE.
 
-> **Status: 🟡 Code done + pushed (2026-07-09). CHANGED: OCR uses OpenAI (OPENAI_API_KEY secret — added) with strict structured outputs, model gpt-4o (OPENAI_MODEL to override); deploy.yml rewritten by user to pnpm/node24 (pnpm-lock.yaml committed). REMAINING: flip Settings→Pages→Source to 'GitHub Actions' (deploy-pages step fails until then), then verify first live deploy + a real inbox ingest.**
+> **Status: ✅ Done (2026-07-09). LIVE at mumbai-lakes.himanshupatil.dev (custom domain + CNAME). OCR: OpenAI gpt-5, detail:high, 3-attempt consensus + %-healing — see scripts/ocr.mjs. Note: first real phone-upload ingest still unverified.**
 
 Read `PRD.md` first. Depends on 02. After this issue: public link goes out.
 

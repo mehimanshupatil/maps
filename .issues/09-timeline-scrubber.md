@@ -1,6 +1,6 @@
 # 09 — Timeline scrubber
 
-> **Status: ⬜ Blocked on issue 06 backfill data (needs 2+ weeks of records to be worth it).**
+> **Status: ✅ Done (2026-07-09). Play/pause + slider, all surfaces follow scrubbed date, smooth water/count transitions, ?date= deep links.**
 
 ## Goal
 

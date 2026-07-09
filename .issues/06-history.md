@@ -1,6 +1,6 @@
 # 06 — History: backfill + trends
 
-> **Status: 🟡 UI done + pushed (2026-07-09): gap-aware season sparklines in lake/city panels, appear at 2+ records. Batch OCR mode built into scripts/ocr.mjs (pass a folder). REMAINING (user): save June→today BMC report images, drop all into data/inbox/ in one push.**
+> **Status: ✅ Done (2026-07-09). 12 records backfilled 2026-06-28→07-09 (7%→48.6%), zero gaps. Sparklines redesigned (area fill, dashed gap bridges, axis labels).**
 
 Read `PRD.md` first. Depends on 05.
 

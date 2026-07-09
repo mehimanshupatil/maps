@@ -1,6 +1,6 @@
 # 07 — Polish
 
-> **Status: 🟡 Partially done (2026-07-09).**
+> **Status: 🟡 Mostly done (2026-07-09). Added since last stamp: loading overlay, deep-ocean backdrop, mobile flicker fix (preserveDrawingBuffer removed). REMAINING: real-phone QA sweep, Safari share-path check, perf pass on mid phone.**
 > Done already: golden-hour lighting pass, data-driven rain (>40mm lakes), overflow rim
 > shimmer, load fill-up animation + header count-up, OG/twitter meta + og.jpg card,
 > favicon, attribution footer, share button.

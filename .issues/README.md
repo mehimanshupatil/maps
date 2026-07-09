@@ -8,11 +8,11 @@ Workflow: fresh session per issue, pass `PRD.md` + the issue file.
 | 02 | Data model: schema, real fill levels | ✅ Done |
 | 03 | Interaction: hover, panels, header, status colors | ✅ Done |
 | 04 | Flow: city, pipes, network topology | ✅ Done |
-| 05 | Pipeline: OCR Action + Pages deploy | 🟡 Code done — **needs Pages source = GitHub Actions**, then verify live |
-| 06 | History: backfill + sparklines | 🟡 UI done — **needs June images dropped in `data/inbox/`** |
-| 07 | Polish | 🟡 Partial — loading state, mobile QA, perf pass remain |
+| 05 | Pipeline: OCR Action + Pages deploy | ✅ Done — LIVE at mumbai-lakes.himanshupatil.dev |
+| 06 | History: backfill + sparklines | ✅ Done — 12 days backfilled, no gaps |
+| 07 | Polish | 🟡 Partial — real-phone QA + perf pass remain |
 | 08 | Intro flythrough | ⬜ |
-| 09 | Timeline scrubber | ⬜ blocked on 06 backfill |
+| 09 | Timeline scrubber | ✅ Done — play the season, ?date= links |
 | 10 | Daily OG card refresh | ⬜ |
 
 Shipped beyond the original plan: real-DEM terrain + OSM rivers/reservoirs +
