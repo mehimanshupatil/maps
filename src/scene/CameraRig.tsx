@@ -1,7 +1,10 @@
-import { useRef } from 'react'
+import { useRef, type ComponentRef } from 'react'
 import { MapControls } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
-import type { MapControls as MapControlsImpl } from 'three-stdlib'
+
+// ref type derived from drei so we don't import three-stdlib directly
+// (a transitive dep that pnpm's strict node_modules doesn't expose)
+type MapControlsImpl = ComponentRef<typeof MapControls>
 
 // Map-like camera: pan + zoom, ~45° tilt with a little play, limited rotation.
 // Target clamped so the user can't pan the scene away.
