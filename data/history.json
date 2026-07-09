@@ -182,6 +182,188 @@
     ]
   },
   {
+    "date": "2026-06-29",
+    "reportTime": "06:00",
+    "totals": {
+      "liveStorageML": 100279,
+      "pctUseful": 6.93,
+      "previousYears": [
+        {
+          "year": 2025,
+          "liveStorageML": 571670,
+          "pctUseful": 39.5
+        },
+        {
+          "year": 2024,
+          "liveStorageML": 78579,
+          "pctUseful": 5.43
+        }
+      ]
+    },
+    "lakes": {
+      "upper_vaitarna": {
+        "levelM": 594.89,
+        "rise24hM": -0.07,
+        "liveStorageML": 0,
+        "pctUseful": 0,
+        "rainTodayMm": 0,
+        "rainSeasonMm": 8,
+        "previousYears": [
+          {
+            "year": 2025,
+            "levelM": 599.61,
+            "liveStorageML": 105649,
+            "pctUseful": 46.53
+          },
+          {
+            "year": 2024,
+            "levelM": 592.37,
+            "liveStorageML": 0,
+            "pctUseful": 0
+          }
+        ]
+      },
+      "modak_sagar": {
+        "levelM": 148.05,
+        "rise24hM": -0.01,
+        "liveStorageML": 23819,
+        "pctUseful": 18.47,
+        "rainTodayMm": 38,
+        "rainSeasonMm": 107,
+        "previousYears": [
+          {
+            "year": 2025,
+            "levelM": 155.47,
+            "liveStorageML": 69467,
+            "pctUseful": 53.88
+          },
+          {
+            "year": 2024,
+            "levelM": 147.56,
+            "liveStorageML": 21151,
+            "pctUseful": 16.41
+          }
+        ]
+      },
+      "tansa": {
+        "levelM": 118.88,
+        "rise24hM": -0.05,
+        "liveStorageML": 0,
+        "pctUseful": 0,
+        "rainTodayMm": 12,
+        "rainSeasonMm": 106,
+        "previousYears": [
+          {
+            "year": 2025,
+            "levelM": 123.71,
+            "liveStorageML": 61174,
+            "pctUseful": 42.17
+          },
+          {
+            "year": 2024,
+            "levelM": 121.32,
+            "liveStorageML": 0,
+            "pctUseful": 0
+          }
+        ]
+      },
+      "middle_vaitarna": {
+        "levelM": 240.95,
+        "rise24hM": 0.23,
+        "liveStorageML": 22308,
+        "pctUseful": 11.53,
+        "rainTodayMm": 4,
+        "rainSeasonMm": 75,
+        "previousYears": [
+          {
+            "year": 2025,
+            "levelM": 263.68,
+            "liveStorageML": 81648,
+            "pctUseful": 42.1
+          },
+          {
+            "year": 2024,
+            "levelM": 239.99,
+            "liveStorageML": 20927,
+            "pctUseful": 10.81
+          }
+        ]
+      },
+      "bhatsa": {
+        "levelM": 108,
+        "rise24hM": -0.17,
+        "liveStorageML": 39636,
+        "pctUseful": 5.53,
+        "rainTodayMm": 8,
+        "rainSeasonMm": 96,
+        "previousYears": [
+          {
+            "year": 2025,
+            "levelM": 120.9,
+            "liveStorageML": 238959,
+            "pctUseful": 33.33
+          },
+          {
+            "year": 2024,
+            "levelM": 112.9,
+            "liveStorageML": 0,
+            "pctUseful": 10.25
+          }
+        ]
+      },
+      "vehar": {
+        "levelM": 77.05,
+        "rise24hM": 0.01,
+        "liveStorageML": 12499,
+        "pctUseful": 45.13,
+        "rainTodayMm": 112,
+        "rainSeasonMm": 292,
+        "previousYears": [
+          {
+            "year": 2025,
+            "levelM": 76.87,
+            "liveStorageML": 11691,
+            "pctUseful": 42.21
+          },
+          {
+            "year": 2024,
+            "levelM": 75.67,
+            "liveStorageML": 5754,
+            "pctUseful": 20.77
+          }
+        ]
+      },
+      "tulsi": {
+        "levelM": 133.65,
+        "rise24hM": 0.3,
+        "liveStorageML": 1952,
+        "pctUseful": 24.26,
+        "rainTodayMm": 179,
+        "rainSeasonMm": 490,
+        "previousYears": [
+          {
+            "year": 2025,
+            "levelM": 136,
+            "liveStorageML": 3262,
+            "pctUseful": 40.54
+          },
+          {
+            "year": 2024,
+            "levelM": 134.01,
+            "liveStorageML": 2269,
+            "pctUseful": 28.2
+          }
+        ]
+      }
+    },
+    "remarks": [
+      "1. Middle Vaitarna WSCPO Gate Opened on 23/06/2026 @ 11:00 Hrs",
+      "2. Upper Vaitarna Release started from 22/06/2026 @ 11.00 Hrs",
+      "3. Upper Vaitarna level is below LDL, Hence useful contents are considered as Zero and useful contents used below LDL is 11974 ML.",
+      "4. Bhandup Complex Today's Rainfall 191.00 and Total Rainfall 386.00 mm"
+    ]
+  },
+  {
     "date": "2026-06-30",
     "reportTime": "06:00",
     "totals": {
@@ -908,6 +1090,188 @@
       "2. Upper Vaitarana Release started from 22/06/2026 @ 11.00 Hrs",
       "3. Upper Vaitarna level is below LDL, Hence useful contents are considered as Zero and useful contents used below LDL is 10471 ML",
       "4. Bhandup Complex Today's Rainfall 137.00 and Total Rainfall 900.00 mm"
+    ]
+  },
+  {
+    "date": "2026-07-04",
+    "reportTime": "06:00",
+    "totals": {
+      "liveStorageML": 136137,
+      "pctUseful": 9.41,
+      "previousYears": [
+        {
+          "year": 2025,
+          "liveStorageML": 734562,
+          "pctUseful": 50.75
+        },
+        {
+          "year": 2024,
+          "liveStorageML": 124343,
+          "pctUseful": 8.59
+        }
+      ]
+    },
+    "lakes": {
+      "upper_vaitarna": {
+        "levelM": 595.28,
+        "rise24hM": 0.27,
+        "liveStorageML": 0,
+        "pctUseful": 0,
+        "rainTodayMm": 40,
+        "rainSeasonMm": 119,
+        "previousYears": [
+          {
+            "year": 2025,
+            "levelM": 601.13,
+            "liveStorageML": 150720,
+            "pctUseful": 66.38
+          },
+          {
+            "year": 2024,
+            "levelM": 594,
+            "liveStorageML": 0,
+            "pctUseful": 0
+          }
+        ]
+      },
+      "modak_sagar": {
+        "levelM": 149.15,
+        "rise24hM": 0.13,
+        "liveStorageML": 29857,
+        "pctUseful": 23.16,
+        "rainTodayMm": 48,
+        "rainSeasonMm": 452,
+        "previousYears": [
+          {
+            "year": 2025,
+            "levelM": 157.22,
+            "liveStorageML": 81446,
+            "pctUseful": 63.17
+          },
+          {
+            "year": 2024,
+            "levelM": 149.45,
+            "liveStorageML": 31905,
+            "pctUseful": 24.65
+          }
+        ]
+      },
+      "tansa": {
+        "levelM": 119.76,
+        "rise24hM": 0.22,
+        "liveStorageML": 9790,
+        "pctUseful": 6.75,
+        "rainTodayMm": 34,
+        "rainSeasonMm": 206,
+        "previousYears": [
+          {
+            "year": 2025,
+            "levelM": 124.36,
+            "liveStorageML": 70688,
+            "pctUseful": 48.85
+          },
+          {
+            "year": 2024,
+            "levelM": 121.35,
+            "liveStorageML": 28829,
+            "pctUseful": 19.86
+          }
+        ]
+      },
+      "middle_vaitarna": {
+        "levelM": 243.5,
+        "rise24hM": 0.8,
+        "liveStorageML": 26038,
+        "pctUseful": 13.46,
+        "rainTodayMm": 86,
+        "rainSeasonMm": 286,
+        "previousYears": [
+          {
+            "year": 2025,
+            "levelM": 270.7,
+            "liveStorageML": 114230,
+            "pctUseful": 59.02
+          },
+          {
+            "year": 2024,
+            "levelM": 245.36,
+            "liveStorageML": 29005,
+            "pctUseful": 14.99
+          }
+        ]
+      },
+      "bhatsa": {
+        "levelM": 108.65,
+        "rise24hM": 0.05,
+        "liveStorageML": 48392,
+        "pctUseful": 6.75,
+        "rainTodayMm": 72,
+        "rainSeasonMm": 413,
+        "previousYears": [
+          {
+            "year": 2025,
+            "levelM": 124.3,
+            "liveStorageML": 302123,
+            "pctUseful": 42.13
+          },
+          {
+            "year": 2024,
+            "levelM": 107.01,
+            "liveStorageML": 26599,
+            "pctUseful": 3.71
+          }
+        ]
+      },
+      "vehar": {
+        "levelM": 78.65,
+        "rise24hM": 0.28,
+        "liveStorageML": 18462,
+        "pctUseful": 66.65,
+        "rainTodayMm": 122,
+        "rainSeasonMm": 848,
+        "previousYears": [
+          {
+            "year": 2025,
+            "levelM": 76.93,
+            "liveStorageML": 11931,
+            "pctUseful": 43.08
+          },
+          {
+            "year": 2024,
+            "levelM": 75.82,
+            "liveStorageML": 6047,
+            "pctUseful": 21.83
+          }
+        ]
+      },
+      "tulsi": {
+        "levelM": 135.85,
+        "rise24hM": 0.51,
+        "liveStorageML": 3680,
+        "pctUseful": 45.74,
+        "rainTodayMm": 150,
+        "rainSeasonMm": 1236,
+        "previousYears": [
+          {
+            "year": 2025,
+            "levelM": 135.4,
+            "liveStorageML": 3244,
+            "pctUseful": 40.32
+          },
+          {
+            "year": 2024,
+            "levelM": 134.09,
+            "liveStorageML": 2341,
+            "pctUseful": 29.1
+          }
+        ]
+      }
+    },
+    "remarks": [
+      "1. Middle Vaitarna WSCPO Gate Opened on 23/06/2026 @ 11:00 Hrs",
+      "2. Upper Vaitarna Release started from 22/06/2026 @ 11.00 Hrs",
+      "3. Upper Vaitarna level is below LDL, Hence useful contents are considered as Zero and useful contents used below LDL is 3835 ML.",
+      "4. Bhandup Complex Today's Rainfall 112.00 and Total Rainfall 1012.00 mm"
     ]
   },
   {
