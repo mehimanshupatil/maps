@@ -1,5 +1,7 @@
 # 03 — Interaction: hover, info panel, header stats
 
+> **Status: ✅ Done (2026-07-09). Extras: status colors (safe/warning/danger), clickable label chips, labels toggle, per-lake history blurbs from the BMC CDP pdf.**
+
 Read `PRD.md` first. Depends on 02.
 
 ## Goal

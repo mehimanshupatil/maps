@@ -1,5 +1,7 @@
 # 01 — Scaffold: app, terrain, basins, camera
 
+> **Status: ✅ Done (2026-07-09). Superseded in part: procedural terrain replaced by real DEM — see PRD decision 11.**
+
 Read `PRD.md` first.
 
 ## Goal

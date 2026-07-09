@@ -1,23 +1,23 @@
 # 07 — Polish
 
+> **Status: 🟡 Partially done (2026-07-09).**
+> Done already: golden-hour lighting pass, data-driven rain (>40mm lakes), overflow rim
+> shimmer, load fill-up animation + header count-up, OG/twitter meta + og.jpg card,
+> favicon, attribution footer, share button.
+
 Read `PRD.md` first. Depends on all prior.
 
-## Goal
+## Remaining tasks
 
-Make it screenshot-worthy and share-ready.
-
-## Tasks
-
-- Lighting/fog/palette pass: golden-hour directional light, soft fog at horizon, cohesive color script (terrain greens/browns, water teal, city warm grey).
-- Rain visual: on lakes where `rainTodayMm` high (e.g. >50mm), light particle rain over that basin. Subtle.
-- Overflow state: lakes at 100% (`pctUseful >= 100`) get overflow shimmer/spill hint at rim + "Overflowing" badge in tooltip/panel.
-- Loading state: skeleton/fade-in while scene builds; no flash of empty canvas.
-- Meta: title, description, OG image (static screenshot), favicon. Share card looks good in WhatsApp/Twitter preview.
-- Mobile QA sweep: real phone — controls, sheet, perf, text sizes.
-- Attribution footer: "Data: BMC Hydraulic Engineer's Department (daily report). Approximate visualization — not official."
+- Loading state: skeleton/fade-in while the DEM loads; no flash of empty canvas
+  (Suspense fallback is currently `null`).
+- Mobile QA sweep on a real phone: touch controls, bottom sheet, perf (particle
+  counts), text sizes, share button via native sheet.
+- Perf check on mid-range phone: terrain vertex count, rain + flow particle load.
+- Color/contrast pass on the status palette for accessibility.
+- Cross-browser: Safari (canvas share path uses `navigator.canShare` — verify).
 
 ## Acceptance
 
 - Cold load → pleasant reveal, no jank.
-- Link preview shows proper card.
-- Phone experience solid end-to-end.
+- Phone experience solid end-to-end; link preview card looks right in WhatsApp/Twitter.

@@ -1,5 +1,7 @@
 # 06 — History: backfill + trends
 
+> **Status: 🟡 UI done + pushed (2026-07-09): gap-aware season sparklines in lake/city panels, appear at 2+ records. Batch OCR mode built into scripts/ocr.mjs (pass a folder). REMAINING (user): save June→today BMC report images, drop all into data/inbox/ in one push.**
+
 Read `PRD.md` first. Depends on 05.
 
 ## Goal

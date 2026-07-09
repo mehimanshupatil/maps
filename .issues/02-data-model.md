@@ -1,5 +1,7 @@
 # 02 — Data model: schema types, real fill levels
 
+> **Status: ✅ Done (2026-07-09).**
+
 Read `PRD.md` first. Depends on 01.
 
 ## Goal

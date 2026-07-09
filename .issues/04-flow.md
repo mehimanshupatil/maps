@@ -1,5 +1,7 @@
 # 04 — Flow: city + animated supply pipes
 
+> **Status: ✅ Done (2026-07-09). Final topology (user-corrected): UV→MV→Modak Sagar river cascade; mains from Modak (carries 37%), Tansa, Bhatsa, Tulsi, Vihar → Bhandup Complex manifold (lane system, side-sorted docking); zone fan-out via bend south of Vihar. No trunk-to-south-Mumbai, no Vihar WTP, no Powai.**
+
 Read `PRD.md` first. Depends on 02 (03 can be parallel).
 
 ## Goal
