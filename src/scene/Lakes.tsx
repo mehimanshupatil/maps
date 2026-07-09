@@ -17,6 +17,10 @@ const LABEL_POS: Partial<Record<LakeKey, [number, number]>> = {
   vehar: [-3, 1.4],
 }
 
+// intro: lakes fill from empty to today's level (matches the header count-up)
+const FILL_ANIM_S = 2.6
+const easeOutCubic = (p: number) => 1 - Math.pow(1 - p, 3)
+
 function Lake({ lakeKey }: { lakeKey: LakeKey }) {
   const hf = useHeightfield()
   const { lakes } = useWaterData()
@@ -25,11 +29,22 @@ function Lake({ lakeKey }: { lakeKey: LakeKey }) {
   const basin = hf.basinByKey[lakeKey]
   const y = hf.waterY(lakeKey, lake.fill)
   const ref = useRef<THREE.Mesh>(null)
+  const ringRef = useRef<THREE.Mesh>(null)
   const active = selected === lakeKey || hovered === lakeKey
+  const overflowing = (lake.reading?.pctUseful ?? 0) >= 99.9
 
   useFrame(({ clock }) => {
+    const t = clock.elapsedTime
+    const fillP = easeOutCubic(Math.min(1, t / FILL_ANIM_S))
     if (ref.current) {
-      ref.current.position.y = y + Math.sin(clock.elapsedTime * 1.2 + basin.cx) * 0.03
+      const target = basin.waterMinY + (y - basin.waterMinY) * fillP
+      ref.current.position.y = target + Math.sin(t * 1.2 + basin.cx) * 0.03
+    }
+    if (ringRef.current) {
+      // overflow shimmer: slow opacity pulse at the rim
+      const m = ringRef.current.material as THREE.MeshBasicMaterial
+      m.opacity = 0.25 + 0.3 * (0.5 + 0.5 * Math.sin(t * 2.2 + basin.cz))
+      ringRef.current.visible = fillP > 0.95
     }
   })
 
@@ -59,6 +74,12 @@ function Lake({ lakeKey }: { lakeKey: LakeKey }) {
           metalness={0.05}
         />
       </mesh>
+      {overflowing && (
+        <mesh ref={ringRef} rotation={[-Math.PI / 2, 0, 0]} position={[0, basin.waterMaxY + 0.06, 0]}>
+          <ringGeometry args={[basin.r * 0.72, basin.r * 0.84, 40]} />
+          <meshBasicMaterial color="#bff0ff" transparent opacity={0.4} />
+        </mesh>
+      )}
       {/* fat invisible hit target so small lakes are easy to tap */}
       <mesh
         position={[0, basin.rimY, 0]}

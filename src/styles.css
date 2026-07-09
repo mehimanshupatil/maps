@@ -346,16 +346,49 @@ body {
   color: #2a7ea6;
 }
 
+.header-lasts {
+  margin-top: 3px;
+  font-size: 12px;
+  color: #33525f;
+}
+
+.header-lasts strong {
+  color: #16739c;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 6px;
+}
+
 .header-toggle {
   display: flex;
   align-items: center;
   gap: 5px;
-  margin-top: 6px;
   font-size: 11px;
   color: #33525f;
   pointer-events: auto;
   cursor: pointer;
   user-select: none;
+}
+
+.header-share {
+  pointer-events: auto;
+  border: none;
+  background: #16739c;
+  color: #fff;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.header-share:hover {
+  background: #1f94c0;
 }
 
 .labels-hidden .lake-label,

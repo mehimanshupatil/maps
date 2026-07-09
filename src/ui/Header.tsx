@@ -1,6 +1,8 @@
+import { useEffect, useState } from 'react'
 import { useWaterData } from '../data/useWaterData'
 import { STATUS_LABEL, cityStatus } from '../data/status'
 import { setLabelsVisible, useSelection } from '../state/selection'
+import { shareSnapshot } from './share'
 
 function formatDate(iso: string) {
   return new Date(`${iso}T00:00:00`).toLocaleDateString('en-IN', {
@@ -10,16 +12,37 @@ function formatDate(iso: string) {
   })
 }
 
+/** counts 0 → target with an ease-out, synced to the lakes' fill animation */
+function useCountUp(target: number, duration = 2600) {
+  const [value, setValue] = useState(0)
+  useEffect(() => {
+    let raf = 0
+    const t0 = performance.now()
+    const step = (t: number) => {
+      const p = Math.min(1, (t - t0) / duration)
+      setValue(target * (1 - Math.pow(1 - p, 3)))
+      if (p < 1) raf = requestAnimationFrame(step)
+    }
+    raf = requestAnimationFrame(step)
+    return () => cancelAnimationFrame(raf)
+  }, [target, duration])
+  return value
+}
+
 export function Header() {
   const { totals, daysOfSupply, record } = useWaterData()
   const { labelsVisible } = useSelection()
   const lastYear = totals.previousYears.find((p) => p.year === new Date(record.date).getFullYear() - 1)
+  const animatedPct = useCountUp(totals.pctUseful)
+  const lastsTill = new Date(`${record.date}T00:00:00`)
+  lastsTill.setDate(lastsTill.getDate() + daysOfSupply)
+  const lastsTillText = lastsTill.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })
 
   return (
     <header className="header">
       <div className="header-title">Mumbai Water Supply</div>
       <div className="header-stats">
-        <span className="header-stock">{totals.pctUseful.toFixed(1)}%</span>
+        <span className="header-stock">{animatedPct.toFixed(1)}%</span>
         <span className={`status-pill status-${cityStatus(totals.pctUseful, daysOfSupply)}`}>
           {STATUS_LABEL[cityStatus(totals.pctUseful, daysOfSupply)]}
         </span>
@@ -28,16 +51,27 @@ export function Header() {
           {lastYear ? ` · ${lastYear.pctUseful.toFixed(1)}% this day last year` : ''}
         </span>
       </div>
+      <div className="header-lasts">
+        Without rain, stock lasts till <strong>~{lastsTillText}</strong>
+      </div>
       <div className="header-date">BMC lake report · {formatDate(record.date)}</div>
       <div className="header-hint">Tap a lake, pipe or the city for details</div>
-      <label className="header-toggle">
-        <input
-          type="checkbox"
-          checked={labelsVisible}
-          onChange={(e) => setLabelsVisible(e.target.checked)}
-        />
-        Show labels
-      </label>
+      <div className="header-actions">
+        <label className="header-toggle">
+          <input
+            type="checkbox"
+            checked={labelsVisible}
+            onChange={(e) => setLabelsVisible(e.target.checked)}
+          />
+          Show labels
+        </label>
+        <button
+          className="header-share"
+          onClick={() => shareSnapshot(totals.pctUseful, daysOfSupply, record.date)}
+        >
+          ↗ Share
+        </button>
+      </div>
     </header>
   )
 }

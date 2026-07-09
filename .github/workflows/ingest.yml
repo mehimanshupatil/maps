@@ -8,7 +8,7 @@ name: Ingest lake report
 on:
   push:
     paths:
-      - 'data/inbox/**'
+      - "data/inbox/**"
   workflow_dispatch:
 
 permissions:
@@ -26,7 +26,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
 
       - name: Check inbox
         id: inbox

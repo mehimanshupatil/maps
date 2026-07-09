@@ -7,6 +7,7 @@ import { Rivers } from './Rivers'
 import { Pipes } from './Pipes'
 import { City } from './City'
 import { Facilities } from './Facilities'
+import { Rain } from './Rain'
 import { CameraRig } from './CameraRig'
 import { setSelected } from '../state/selection'
 
@@ -25,13 +26,15 @@ export function Scene() {
         far: 1200,
       }}
       dpr={[1, 2]}
+      gl={{ preserveDrawingBuffer: true }}
       style={{ background: SKY }}
       onPointerMissed={() => setSelected(null)}
     >
       <fog attach="fog" args={[SKY, 320, 800]} />
-      <ambientLight intensity={0.55} />
-      <directionalLight position={[-80, 120, -60]} intensity={1.3} color="#fff4e0" />
-      <hemisphereLight args={['#bfd8e2', '#5a6b4f', 0.35]} />
+      {/* golden-hour grade: warm sun + soft warm fill, kept bright */}
+      <ambientLight intensity={0.62} color="#fff3e2" />
+      <directionalLight position={[-110, 105, -50]} intensity={1.5} color="#ffdfb4" />
+      <hemisphereLight args={['#c9dfe9', '#6e7350', 0.5]} />
       <Suspense fallback={null}>
         <Terrain />
         <Sea />
@@ -41,6 +44,7 @@ export function Scene() {
         <Pipes />
         <City />
         <Facilities />
+        <Rain />
       </Suspense>
       <CameraRig />
     </Canvas>
