@@ -164,7 +164,7 @@ async function callOpenAI(imagePath) {
     },
     body: JSON.stringify({
       model: MODEL,
-      max_completion_tokens: 24576,
+      max_completion_tokens: 16384,
       // gpt-5-style models spend from the same budget on reasoning; keep it low
       ...(MODEL.startsWith('gpt-5') ? { reasoning_effort: 'low' } : {}),
       response_format: {
@@ -317,9 +317,9 @@ if (arg === '--dry-run') {
 const isDir = statSync(arg).isDirectory()
 const images = isDir
   ? (await readdir(arg))
-      .filter((f) => /\.(png|jpe?g|webp)$/i.test(f))
-      .sort()
-      .map((f) => join(arg, f))
+    .filter((f) => /\.(png|jpe?g|webp)$/i.test(f))
+    .sort()
+    .map((f) => join(arg, f))
   : [arg]
 
 if (!images.length) {
