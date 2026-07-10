@@ -14,7 +14,7 @@ Workflow: fresh session per issue, pass `PRD.md` + the issue file.
 | 08 | Intro flythrough | ✅ Done — ?intro=1 to force |
 | 09 | Timeline scrubber | ✅ Done — play the season, ?date= links |
 | 10 | Daily OG card refresh | ✅ Done — auto with each ingest |
-| 11 | Three.js scene upgrade (water shader, sky, day-night, bloom, gauges, waterfalls, city lights) | 🟡 In progress |
+| 11 | Three.js scene upgrade (water shader, sky, day-night, bloom, waterfalls, city lights) | ✅ Done — try ?t=23 |
 
 Shipped beyond the original plan: real-DEM terrain + OSM rivers/reservoirs +
 geoBoundaries districts, share button, "lasts till" date, fill-up intro

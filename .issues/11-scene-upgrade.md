@@ -1,6 +1,6 @@
 # 11 — Three.js scene upgrade (wow pack)
 
-> **Status: 🟡 In progress (2026-07-10).**
+> **Status: ✅ Done (2026-07-10).** Shipped: IST day-night (clamped, ?t= override), Sky + drifting clouds (dome yields to stars at deep night), water ripple shader (diagonal waves, distance-faded, night-darkened), overflow waterfalls, night city lights + zone glow + bright night particles, desktop-only Bloom+Vignette. Gauge pillars built, evaluated, REMOVED — no reference frame at map scale; chips already carry status. og-base.jpg regenerated.
 
 From the 2026-07-10 grilling: Three.js is underused — scene is static planes while
 UI carries the interest. Direction locked: **richer scene, DOM UI untouched**
