@@ -7,6 +7,7 @@ import { useWaterData } from '../data/useWaterData'
 import { lakeStatus } from '../data/status'
 import { setHovered, setSelected, useSelection } from '../state/selection'
 import { useHeightfield } from './heightfield'
+import { WaterMaterial } from './WaterMaterial'
 
 const WATER = '#3fa8c9'
 const WATER_ACTIVE = '#6fd0ea'
@@ -64,13 +65,7 @@ function Lake({ lakeKey }: { lakeKey: LakeKey }) {
     <group position={[basin.cx, 0, basin.cz]}>
       <mesh ref={ref} rotation={[-Math.PI / 2, 0, 0]} position={[0, basin.waterMinY, 0]}>
         <circleGeometry args={[basin.r * 0.72, 40]} />
-        <meshStandardMaterial
-          color={active ? WATER_ACTIVE : WATER}
-          transparent
-          opacity={0.92}
-          roughness={0.25}
-          metalness={0.05}
-        />
+        <WaterMaterial color={active ? WATER_ACTIVE : WATER} opacity={0.94} />
       </mesh>
       {overflowing && (
         <mesh ref={ringRef} rotation={[-Math.PI / 2, 0, 0]} position={[0, basin.waterMaxY + 0.06, 0]}>

@@ -3,6 +3,7 @@ import * as THREE from 'three'
 import type { ThreeEvent } from '@react-three/fiber'
 import { setSelected } from '../state/selection'
 import { useHeightfield } from './heightfield'
+import { WaterMaterial } from './WaterMaterial'
 
 /** grid cells per geometry quad (2 = half the DEM resolution, ~71k verts) */
 const STRIDE = 2
@@ -74,7 +75,7 @@ export function Sea() {
   return (
     <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.02, 0]}>
       <planeGeometry args={[hf.sceneW * 6, hf.sceneH * 6]} />
-      <meshStandardMaterial color="#1e6a89" roughness={0.35} metalness={0.05} />
+      <WaterMaterial color="#1e6a89" />
     </mesh>
   )
 }
