@@ -129,8 +129,28 @@ export function validateRecord(rec, history) {
     if (l.levelM < cfg.ldlM - 2 || l.levelM > cfg.fslM + 2)
       errs.push(`${key}: level ${l.levelM} outside [LDL-2, FSL+2] = [${cfg.ldlM - 2}, ${cfg.fslM + 2}]`)
   }
-  if (Math.abs(sum - rec.totals.liveStorageML) > rec.totals.liveStorageML * 0.01)
-    errs.push(`lake sum ${sum} != total ${rec.totals.liveStorageML} (±1%)`)
+  // printed lake rows sum exactly to the printed total; allow only the
+  // rounding slack that pct-derived healing can introduce (~±36 ML/lake)
+  if (Math.abs(sum - rec.totals.liveStorageML) > 300)
+    errs.push(`lake sum ${sum} != total ${rec.totals.liveStorageML} (±300 ML)`)
+
+  // cross-check against the previous day's record: today's level must agree
+  // with yesterday's level + printed 24h rise, and season rain must equal
+  // yesterday's season rain + today's rain. Catches row-shift misreads that
+  // are internally self-consistent.
+  const prevDate = new Date(Date.parse(rec.date) - 86400e3).toISOString().slice(0, 10)
+  const prev = history.find((h) => h.date === prevDate)
+  if (prev) {
+    for (const key of LAKE_KEYS) {
+      const l = rec.lakes[key]
+      const p = prev.lakes[key]
+      if (!l || !p) continue
+      if (Math.abs(p.levelM + l.rise24hM - l.levelM) > 0.05)
+        errs.push(`${key}: yesterday ${p.levelM} + rise ${l.rise24hM} != level ${l.levelM}`)
+      if (Math.abs(p.rainSeasonMm + l.rainTodayMm - l.rainSeasonMm) > 2)
+        errs.push(`${key}: yesterday season rain ${p.rainSeasonMm} + today ${l.rainTodayMm} != season ${l.rainSeasonMm}`)
+    }
+  }
   return errs
 }
 
